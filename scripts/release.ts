@@ -200,8 +200,7 @@ async function telegram(metodo: string, body: FormData | Record<string, unknown>
   }
 
   // 5. Git: commit, tag, push
-  const claude = /claude/i.test(nuova.autore) ? "\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>" : "";
-  const messaggio = `release v${nuova.versione}: ${piatto(nuova.gruppo)}\n\nTipo: ${nuova.tipo}\nVerifica: ${piatto(nuova.verifica)}\nDeploy: ${deploy}${claude}`;
+  const messaggio = `release v${nuova.versione}: ${piatto(nuova.gruppo)}\n\nTipo: ${nuova.tipo}\nVerifica: ${piatto(nuova.verifica)}\nDeploy: ${deploy}`;
   writeFileSync(resolve(ROOT, ".git", "MSG_RELEASE"), messaggio);
   let push = "ok";
   try {
