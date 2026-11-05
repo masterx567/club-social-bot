@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🏆 club-social-bot
+# club-social-bot
 
 **Il bot Telegram che fa i social di una società sportiva.**<br>
 Foto + risultato nel gruppo → grafica Canva → post su Instagram e Facebook.
@@ -17,7 +17,7 @@ Foto + risultato nel gruppo → grafica Canva → post su Instagram e Facebook.
 
 ---
 
-> 🇬🇧 **In English**
+> **In English**
 >
 > Telegram bot that runs the social media of an amateur sports club.
 >
@@ -29,33 +29,33 @@ Foto + risultato nel gruppo → grafica Canva → post su Instagram e Facebook.
 
 ---
 
-## ✨ Cosa fa
+## Cosa fa
 
-| | Funzione | Come |
-|---|---|---|
-| 📸 | **Risultati** | Foto + `/risultato` nel gruppo, il bot propone le partite dai portali e chiede il punteggio |
-| 🎨 | **Grafiche** | Riempie i template Canva con squadre, punteggio, loghi e foto ritagliata |
-| ✍️ | **Didascalie** | Scritte da un LLM partendo da esempi di post veri |
-| 📤 | **Pubblicazione** | Coda unica verso Instagram e Facebook, con approvazione ✅ nel gruppo |
-| 🗓️ | **Carosello settimanale** | Tutti i risultati della settimana, chiede quelli che mancano |
-| 📰 | **Notizie** | News del CSI Milano portate nel gruppo |
-| 📊 | **Statistiche** | Report mensile e trimestrale: crescita e "cosa tira" |
-| 💌 | **Newsletter** | Mail del venerdì preparata in automatico |
+| Funzione | Come |
+|---|---|
+| **Risultati** | Foto + `/risultato` nel gruppo, il bot propone le partite dai portali e chiede il punteggio |
+| **Grafiche** | Riempie i template Canva con squadre, punteggio, loghi e foto ritagliata |
+| **Didascalie** | Scritte da un LLM partendo da esempi di post veri |
+| **Pubblicazione** | Coda unica verso Instagram e Facebook, con approvazione nel gruppo |
+| **Carosello settimanale** | Tutti i risultati della settimana, chiede quelli che mancano |
+| **Notizie** | News del CSI Milano portate nel gruppo |
+| **Statistiche** | Report mensile e trimestrale: crescita e "cosa tira" |
+| **Newsletter** | Mail del venerdì preparata in automatico |
 
-## 🔄 Come funziona
+## Come funziona
 
 ```mermaid
 flowchart LR
-    A[👟 Allenatore<br>foto + /risultato] --> B[🤖 Bot Telegram]
-    P[(🏟️ Portali<br>CSI · UISP · FIP)] --> B
-    B --> C[🎨 Canva<br>grafica]
-    B --> L[✍️ LLM<br>didascalia]
-    C --> Q[📥 Coda<br>QStash]
+    A[Allenatore<br>foto + /risultato] --> B[Bot Telegram]
+    P[(Portali<br>CSI · UISP · FIP)] --> B
+    B --> C[Canva<br>grafica]
+    B --> L[LLM<br>didascalia]
+    C --> Q[Coda<br>QStash]
     L --> Q
-    Q -->|✅ approvato| I[📱 Instagram<br>+ Facebook]
+    Q -->|approvato| I[Instagram<br>+ Facebook]
 ```
 
-## 🧱 Stack
+## Stack
 
 | Pezzo | Tecnologia |
 |---|---|
@@ -67,7 +67,7 @@ flowchart LR
 | Mail | Brevo |
 | Bot | Bot API Telegram via `fetch`, senza framework |
 
-## 📁 Struttura
+## Struttura
 
 ```text
 api/        handler Vercel: webhook Telegram, cron, login Canva e Instagram
@@ -81,7 +81,7 @@ scripts/    procedura di release
 docs/       manuale tecnico completo
 ```
 
-## 🚀 Release disciplinate
+## Release disciplinate
 
 Ogni modifica passa da `npm run release`:
 
@@ -93,7 +93,7 @@ Ogni modifica passa da `npm run release`:
 
 I deploy diretti sono bloccati.
 
-## 📌 Stato
+## Stato
 
 Questo è un repo **vetrina**: lo snapshot di un bot in produzione.
 
@@ -104,8 +104,8 @@ Per farlo girare servono account propri
 (Telegram, Canva, Meta, Upstash, Groq, Brevo) e template Canva propri.
 Parti da `.env.example` e da `docs/manuale.md`.
 
-🙋 Vuoi usarlo per la tua società? Apri una issue.
+Vuoi usarlo per la tua società? Apri una issue.
 
-## 📄 Licenza
+## Licenza
 
 [MIT](LICENSE)
