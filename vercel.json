@@ -1,0 +1,34 @@
+{
+  "regions": [
+    "fra1"
+  ],
+  "functions": {
+    "api/telegram.ts": {
+      "maxDuration": 300,
+      "includeFiles": "{node_modules/@vercel/og/**,node_modules/ffmpeg-static/ffmpeg}"
+    },
+    "api/cron-carosello.ts": {
+      "maxDuration": 300
+    },
+    "api/cron-settimana.ts": {
+      "maxDuration": 300
+    },
+    "api/setup.ts": {
+      "maxDuration": 300,
+      "includeFiles": "docs/logo-mail.png"
+    },
+    "api/ig-auto.ts": {
+      "maxDuration": 300
+    },
+    "api/cron-news.ts": {
+      "maxDuration": 300,
+      "includeFiles": "node_modules/@vercel/og/**"
+    }
+  },
+  "crons": [
+    {
+      "path": "/api/cron-news",
+      "schedule": "0 7 * * *"
+    }
+  ]
+}
