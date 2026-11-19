@@ -1,5 +1,5 @@
 import { nellArgomento } from "../lib/argomenti";
-import { firmaQstash } from "../lib/qstash";
+import { firmaQstash, cronAutorizzato } from "../lib/qstash";
 import { generaSettimana } from "../lib/settimana";
 
 // Partite da giovedì a mercoledì, da pubblicare il giovedì: mercoledì alle 19:00 ora italiana. Dal 2026-10-14 la chiama
@@ -21,7 +21,7 @@ export async function POST(req: Request) {
 }
 
 export async function GET(req: Request) {
-  if (req.headers.get("authorization") !== `Bearer ${process.env.CRON_SECRET}`) {
+  if (!cronAutorizzato(req)) {
     return new Response("forbidden", { status: 403 });
   }
   return esegui();

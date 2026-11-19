@@ -1,6 +1,6 @@
 import { nellArgomento } from "../lib/argomenti";
 import { anteprima } from "../lib/newsletter";
-import { firmaQstash } from "../lib/qstash";
+import { firmaQstash, cronAutorizzato } from "../lib/qstash";
 import { avvisaAdmin } from "../lib/telegram";
 
 // Anteprima newsletter nel topic 📰 RSS CSI, venerdì alle 10:30 ora italiana (3.0, prima 10:00); l'invio parte 90 minuti dopo (12:00).
@@ -26,6 +26,6 @@ export async function POST(req: Request) {
 }
 
 export async function GET(req: Request) {
-  if (req.headers.get("authorization") !== `Bearer ${process.env.CRON_SECRET}`) return new Response("forbidden", { status: 403 });
+  if (!cronAutorizzato(req)) return new Response("forbidden", { status: 403 });
   return esegui();
 }
