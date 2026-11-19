@@ -1,6 +1,6 @@
 import { nellArgomento } from "../lib/argomenti";
 import { aggiornaPartite, generaCarosello } from "../lib/carosello";
-import { firmaQstash } from "../lib/qstash";
+import { firmaQstash, cronAutorizzato } from "../lib/qstash";
 
 // Carosello della settimana nel gruppo, martedì alle 9:00 ora italiana. Dal 2026-10-14 la chiama una pianificazione
 // QStash con fuso Europe/Rome (api/setup?pianifica=1), non più il cron di Vercel: quello è solo in UTC (col cambio
@@ -22,7 +22,7 @@ export async function POST(req: Request) {
 }
 
 export async function GET(req: Request) {
-  if (req.headers.get("authorization") !== `Bearer ${process.env.CRON_SECRET}`) {
+  if (!cronAutorizzato(req)) {
     return new Response("forbidden", { status: 403 });
   }
   // ?prova=1: legge solo i portali e risponde con il conteggio, niente Canva né Telegram

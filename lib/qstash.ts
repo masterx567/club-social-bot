@@ -30,3 +30,13 @@ export async function programmaChiamata(dest: string, minuti: number) {
   });
   if (!r.ok) throw new Error(`QStash ${r.status}: ${await r.text()}`);
 }
+
+// CRON_SECRET fail-closed (audit 2026-11-19): senza la variabile nessuno passa. Prima, con CRON_SECRET mancante,
+// l'header atteso diventava "Bearer undefined" e chiunque poteva lanciare i cron. Confronto a tempo costante.
+export function cronAutorizzato(req: Request): boolean {
+  const s = process.env.CRON_SECRET;
+  if (!s) return false;
+  const atteso = Buffer.from(`Bearer ${s}`);
+  const arrivato = Buffer.from(req.headers.get("authorization") || "");
+  return atteso.length === arrivato.length && crypto.timingSafeEqual(atteso, arrivato);
+}

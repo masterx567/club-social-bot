@@ -5,11 +5,12 @@ import { inviaReport, reportMensile } from "../lib/metriche";
 import { rinnovaToken } from "../lib/instagram";
 import { finestra, inviaPeriodo, type Periodo } from "../lib/report";
 import { v3 } from "../lib/prova";
+import { cronAutorizzato } from "../lib/qstash";
 
 // Cron Vercel giornaliero (vercel.json): notizie nuove della home CSI Milano nel gruppo, da rilanciare.
 // Vercel firma la chiamata con "Authorization: Bearer CRON_SECRET".
 export async function GET(req: Request) {
-  if (req.headers.get("authorization") !== `Bearer ${process.env.CRON_SECRET}`) {
+  if (!cronAutorizzato(req)) {
     return new Response("forbidden", { status: 403 });
   }
   // Il gruppo è l'unico ID negativo in ALLOWED_CHAT_IDS (gli ID privati sono positivi)
